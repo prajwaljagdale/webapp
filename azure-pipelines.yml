@@ -44,7 +44,6 @@ steps:
 
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: ...
     appType: 'webApp'
     appName: 'prajwal-l1-webapp'
     package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
