@@ -49,7 +49,6 @@ steps:
 # ✅ ADDED: Deploy to Azure Web App
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: 'azure-webapp-federation-conn'
     appType: 'webApp'
     appName: 'prajwal-l1-webapp'
     package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
