@@ -1,7 +1,5 @@
 # ASP.NET
 # Build and test ASP.NET projects.
-# Add steps that publish symbols, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
 
 trigger:
 - main
@@ -13,8 +11,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  azureSubscription: 'azure-webapp-federation-conn'   # ✅ added
-  webAppName: 'prajwal-l1-webapp'                      # ✅ added
+  webAppName: 'prajwal-l1-webapp'
 
 steps:
 - task: NuGetToolInstaller@1
@@ -40,15 +37,14 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-# ✅ ADDED: Publish Build Artifacts
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
 
-# ✅ ADDED: Deploy to Azure Web App
 - task: AzureWebApp@1
   inputs:
+    azureSubscription: ...
     appType: 'webApp'
     appName: 'prajwal-l1-webapp'
     package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
